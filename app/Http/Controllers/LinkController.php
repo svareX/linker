@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LinkRequest;
 use App\Models\Link;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class LinkController extends Controller
@@ -32,13 +34,20 @@ class LinkController extends Controller
      */
     public function store(User $user, LinkRequest $request)
     {
-        Link::create([
-            'user_id' => $user->id,
-            'name' => $request->name,
-            'url_long' => $request->url_long,
-            'url_short' => Str::slug($request->url_short),
-        ]);
-        return redirect()->route('links.index', $user);
+        try {
+            Link::create([
+                'user_id' => $user->id,
+                'name' => $request->name,
+                'url_long' => $request->url_long,
+                'url_short' => Str::slug($request->url_short),
+            ]);
+            session()->flash('success', 'Link has been created successfully!');
+            return redirect()->route('links.index', $user);
+        } catch (Exception $e) {
+            Log::error($e);
+            session()->flash('error', 'Error occured while creating a new link.');
+            return redirect()->back();
+        }
     }
 
     /**
