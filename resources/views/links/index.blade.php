@@ -7,30 +7,30 @@
 
     <div class="mt-4">
         @forelse ($links as $link)
-            <div class="py-3">
+            <div class="py-3 mx-6 sm:mx-0">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="flex justify-between bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="flex justify-between bg-white overflow-hidden shadow-sm rounded-lg">
                         <a href="{{ $link->url_long }}" target=”_blank” class="w-full">
-                            <div class="m-6 text-gray-900">
+                            <div class="m-3 sm:m-6 text-gray-900">
                                 <p class="text-xl">
                                     {{ $link->name ? $link->name : $link->url_long }}
                                 </p>
                             </div>
                         </a>
-                        <div class="flex justify-between w-40">
-                            <span class="flex w-20 justify-center"
+                        <div class="flex justify-between w-24 sm:w-40 mr-2">
+                            <span class="flex w-8 sm:w-20 justify-center"
                                 onclick="Livewire.emit('openModal', 'edit-link', {{ json_encode(['link' => $link]) }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"
-                                    class="text-4xl my-auto hover:cursor-pointer">
+                                    class="text-2xl sm:text-4xl my-auto hover:cursor-pointer">
                                     <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
                                         d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
                                 </svg>
                             </span>
-                            <span class="flex w-20 justify-center"
+                            <span class="flex w-8 sm:w-20 justify-center"
                                 onclick="Livewire.emit('openModal', 'delete-link', {{ json_encode(['link' => $link]) }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
-                                    class="text-4xl my-auto hover:cursor-pointer">
+                                    class="text-2xl sm:text-4xl my-auto hover:cursor-pointer">
                                     <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
                                         d="M135.2
@@ -56,9 +56,9 @@
             </div>
         @endforelse
 
-        <div class="py-3">
+        <div class="py-3 mx-6 sm:mx-0">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm rounded-lg">
                     <div class="p-6 text-gray-900">
                         <button onclick="Livewire.emit('openModal', 'create-link')"
                             class="text-xl hover:font-extrabold">Create a new
