@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('slug')->unique();
             $table->string('name');
             $table->string('url_long');
-            $table->string('url_short')->unique();
+            $table->string('url_short', 16)->unique();
             $table->timestamps();
         });
     }

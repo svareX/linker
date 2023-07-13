@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LinkRequest;
 use App\Models\Link;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LinkController extends Controller
 {
@@ -28,9 +30,15 @@ class LinkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(User $user, LinkRequest $request)
     {
-        //
+        Link::create([
+            'user_id' => $user->id,
+            'name' => $request->name,
+            'url_long' => $request->url_long,
+            'url_short' => Str::slug($request->url_short),
+        ]);
+        return redirect()->route('links.index', $user);
     }
 
     /**
