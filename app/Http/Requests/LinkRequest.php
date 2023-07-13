@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Link;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LinkRequest extends FormRequest
 {
@@ -22,9 +24,9 @@ class LinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|',
-            'url_long' => 'required|url|active_url|',
-            'url_short' => 'nullable|string|max:16|unique:links,url_short',
+            'name' => ['required', 'string', 'max:255'],
+            'url_long' => ['required', 'url', 'active_url'],
+            'url_short' => ['nullable', 'string', 'max:16', Rule::unique(Link::class)->ignore($this->link)],
         ];
     }
 }

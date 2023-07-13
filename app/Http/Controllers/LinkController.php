@@ -6,7 +6,6 @@ use App\Http\Requests\LinkRequest;
 use App\Models\Link;
 use App\Models\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -19,14 +18,6 @@ class LinkController extends Controller
     {
         $links = Link::where('user_id', $user->id)->get();
         return view('links.index')->with('links', $links);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -45,40 +36,43 @@ class LinkController extends Controller
             return redirect()->route('links.index', $user);
         } catch (Exception $e) {
             Log::error($e);
-            session()->flash('error', 'Error occured while creating a new link.');
+            session()->flash('error', 'Error occured while creating the link.');
             return redirect()->back();
         }
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(LinkRequest $request, User $user, Link $link)
     {
-        //
+        try {
+            $link->name = $request->name;
+            $link->url_long = $request->url_long;
+            $link->url_short = $request->url_short;
+            $link->save();
+            session()->flash('success', 'Link has been updated successfully!');
+            return redirect()->route('links.index', $user);
+        } catch (Exception $e) {
+            Log::error($e);
+            session()->flash('error', 'Error occured while updating the link.');
+            return redirect()->back();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user, Link $link)
     {
-        //
+        try {
+            $link->delete();
+            session()->flash('success', 'Link has been deleted successfully!');
+            return redirect()->route('links.index', $user);
+        } catch (Exception $e) {
+            Log::error($e);
+            session()->flash('error', 'Error occured while deleting the link.');
+            return redirect()->back();
+        }
     }
 }

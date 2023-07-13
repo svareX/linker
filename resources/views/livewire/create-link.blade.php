@@ -1,7 +1,9 @@
 <div class="p-8">
     <div>
-        <form action="{{ route('links.store', auth()->user()) }}" method="POST">
+        <form action="{{ route('links.store', auth()->user()->slug) }}" method="POST">
             @csrf
+
+            <span class="text-xl">Create a new link!</span>
 
             <!-- NAME -->
             <div class="my-3">
