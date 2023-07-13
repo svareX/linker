@@ -30,7 +30,7 @@
                     <x-text-input id="url_short"
                         class="rounded-none bg-gray-50 border rounded-r-lg block flex-1 min-w-0 w-full text-sm"
                         type="text" name="url_short" :value="old('url_short')" autofocus autocomplete="url_short"
-                        placeholder="short-link" />
+                        placeholder="short-link" maxlength="16" />
                 </div>
                 <p class="text-gray-500 text-sm my-1">*Slug can be left empty and will be automatically generated!
                 </p>
