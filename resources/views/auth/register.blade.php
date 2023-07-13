@@ -16,9 +16,10 @@
             <div class="flex">
                 <span
                     class="inline-flex items-center px-3 text-sm border border-r-0 border-gray-300 rounded-l-md text-gray-500">linker.com/</span>
-                <x-text-input id="slug"
-                    class="rounded-none rounded-r-lg bg-gray-50 border  block flex-1 min-w-0 w-full text-sm"
+                <x-text-input id="slug" class="rounded-none bg-gray-50 border  block flex-1 min-w-0 w-full text-sm"
                     type="text" name="slug" :value="old('slug')" required autofocus autocomplete="slug" />
+                <span
+                    class="inline-flex items-center px-3 text-sm border border-l-0 border-gray-300 rounded-r-md text-gray-500">/your-links</span>
             </div>
             <x-input-error :messages="$errors->get('slug')" class="mt-2" />
         </div>
