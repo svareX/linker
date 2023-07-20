@@ -1,15 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Your links') }}
-        </h2>
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <h2 class="font-semibold text-3xl text-gray-800 leading-tight">
+                {{ isset($links) ? "{$links->first()->user->name}'s links" : 'Links' }}
+            </h2>
+        </div>
     </x-slot>
 
     <div class="mt-4">
         @forelse ($links as $link)
             <div class="py-3 mx-6 sm:mx-0">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="flex justify-between bg-white overflow-hidden shadow-md rounded-lg">
+                    <div class="flex justify-between bg-white overflow-hidden shadow-md rounded-lg hover:bg-slate-50">
                         <a href="{{ $link->url_long }}" target=”_blank” class="w-full">
                             <div class="m-3 sm:m-6 text-gray-900">
                                 <p class="text-xl">
@@ -61,11 +63,11 @@
         @can('create', $link)
             <div class="py-3 mx-6 sm:mx-0">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white overflow-hidden shadow-md rounded-lg">
+                    <div class="bg-white overflow-hidden shadow-md rounded-lg hover:bg-slate-50 hover:cursor-pointer"
+                        onclick="Livewire.emit('openModal', 'create-link')">
                         <div class="p-6 text-gray-900">
-                            <button onclick="Livewire.emit('openModal', 'create-link')"
-                                class="text-xl hover:font-extrabold">Create a new
-                                link</button>
+                            <span class="text-xl">Create a new
+                                link</span>
                         </div>
                     </div>
                 </div>
