@@ -39,7 +39,7 @@
         </main>
 
         <!-- Messages -->
-        <section class="absolute bottom-0 left-0 m-5 z-10">
+        <section class="absolute top-0 right-0 m-5 z-10">
             @if (session()->has('success'))
                 <div id="alert-additional-content-3"
                     class="p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
@@ -56,7 +56,7 @@
                     <div class="mt-2 mb-4 text-sm">
                         {{ session('success') }}
                     </div>
-                    <div class="flex">
+                    <div class="flex justify-end">
                         <button type="button"
                             class="text-green-800 bg-transparent border border-green-800 hover:bg-green-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-green-600 dark:border-green-600 dark:text-green-400 dark:hover:text-white dark:focus:ring-green-800"
                             data-dismiss-target="#alert-additional-content-3" aria-label="Close">
@@ -81,7 +81,7 @@
                     <div class="mt-2 mb-4 text-sm">
                         {{ session('error') }}
                     </div>
-                    <div class="flex">
+                    <div class="flex justify-end">
                         <button type="button"
                             class="text-red-800 bg-transparent border border-red-800 hover:bg-red-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-red-600 dark:border-red-600 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800"
                             data-dismiss-target="#alert-additional-content-2" aria-label="Close">

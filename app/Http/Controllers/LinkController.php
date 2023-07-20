@@ -6,6 +6,7 @@ use App\Http\Requests\LinkRequest;
 use App\Models\Link;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -16,8 +17,7 @@ class LinkController extends Controller
      */
     public function index(User $user)
     {
-        $links = Link::where('user_id', $user->id)->get();
-        return view('links.index')->with('links', $links);
+        return view('links.index')->with('links', $user->links);
     }
 
     /**
@@ -26,12 +26,11 @@ class LinkController extends Controller
     public function store(User $user, LinkRequest $request)
     {
         try {
-            Link::create([
-                'user_id' => $user->id,
+            Link::make([
                 'name' => $request->name,
                 'url_long' => $request->url_long,
-                'url_short' => Str::slug($request->url_short),
-            ]);
+                'url_short' => $request->url_short ? Str::slug($request->url_short) : Str::slug(Str::random(6)),
+            ])->user()->associate($user)->save();
             session()->flash('success', 'Link has been created successfully!');
             return redirect()->route('links.index', $user);
         } catch (Exception $e) {
@@ -47,10 +46,11 @@ class LinkController extends Controller
     public function update(LinkRequest $request, User $user, Link $link)
     {
         try {
-            $link->name = $request->name;
-            $link->url_long = $request->url_long;
-            $link->url_short = $request->url_short;
-            $link->save();
+            $link->updateOrFail([
+                'name' => $request->name,
+                'url_long' => $request->url_long,
+                'url_short' => $request->url_short ? Str::slug($request->url_short) : Str::slug(Str::random(6)),
+            ]);
             session()->flash('success', 'Link has been updated successfully!');
             return redirect()->route('links.index', $user);
         } catch (Exception $e) {
