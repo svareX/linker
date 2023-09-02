@@ -51,7 +51,7 @@ Then all you need to do is to start a local Laravel server.
 </p>
 
 <p align="center">
-<img src="https://i.ibb.co/92L8bLF/Fire-Shot-Capture-017-Linker-localhost.png" alt="Fire-Shot-Capture-017-Linker-localhost">
+<img src="https://i.ibb.co/q97TQjW/Fire-Shot-Capture-017-Linker-localhost.png" alt="Fire-Shot-Capture-017-Linker-localhost">
 </p>
 
 ## License
