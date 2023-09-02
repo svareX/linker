@@ -23,11 +23,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    //Users
-    Route::resource('/profile', ProfileController::class)->only(['edit', 'update', 'destroy']);
-    //Links
-    Route::resource('/{user:slug}/links', LinkController::class)->except(['create', 'show', 'edit',]);
-});
+//Users
+Route::resource('/profile', ProfileController::class)->only(['edit', 'update', 'destroy']);
+//Links
+Route::resource('/{user:slug}/links', LinkController::class)->except(['create', 'show', 'edit',]);
 
 require __DIR__ . '/auth.php';
