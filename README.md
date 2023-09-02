@@ -16,7 +16,7 @@ My Linker project is inspired by website like [Linktree](https://linktr.ee/). I 
 ## Try it yourself!
 First you need to clone the repository.
 
-    git clone https://github.com/svareX/livewirechat
+    git clone https://github.com/svareX/linker
 
 Then install all the package and dependencies.
 
