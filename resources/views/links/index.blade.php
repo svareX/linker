@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col md:flex-row justify-between items-center">
             <h2 class="font-semibold text-3xl text-gray-800 leading-tight">
-                {{ isset($links) ? "{$links->first()->user->name}'s links" : 'Links' }}
+                {{ isset($links) && $links->first() ? "{$links->first()->user->name}'s links" : 'Links' }}
             </h2>
         </div>
     </x-slot>
@@ -60,7 +60,7 @@
             </div>
         @endforelse
 
-        @can('create', $link)
+        @can('create', App\Models\Link::class)
             <div class="py-3 mx-6 sm:mx-0">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-md rounded-lg hover:bg-slate-50 hover:cursor-pointer"
